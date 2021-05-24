@@ -14,7 +14,7 @@ app.use("/posts", postRoutes);
 
 
 const CONNECTION_URL =
-  "mongodb+srv://jarred86:password1234@cluster0.musdc.mongodb.net/dbname?retryWrites=true&w=majority";
+  "mongodb+srv://JarredC86:Pablonala_86@cluster0.musdc.mongodb.net/dbname?retryWrites=true&w=majority";
 
 const PORT = process.env.PORT || 5000;
 

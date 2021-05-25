@@ -24,8 +24,10 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("handle")
 
-    dispatch(createPost(postData));
+    // dispatch
+    createPost(postData)();
   };
 
   const clear = () => {};
@@ -38,23 +40,20 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-      <Typography 
-      variant="h4"
-      align="left"
-     
-      >Ready to Jam
-      </Typography>
+        <Typography variant="h4" align="left">
+          Ready to Jam
+        </Typography>
 
-      <Typography 
-      variant="h6"
-      color="textSecondary"
-     
-      >Hello fellow musicians. Use this feature to create posts to organise a Jam, sell musical instruments or offer tutoring lessons. Enter location and key words in tag section to allow other users to find you easier.
-      </Typography>
+        <Typography variant="h6" color="textSecondary">
+          Hello fellow musicians. Use this feature to create posts to organise a
+          Jam, sell musical instruments or offer tutoring lessons. Enter
+          location and key words in tag section to allow other users to find you
+          easier.
+        </Typography>
 
         <TextField
           name="creator"
-          square={false}
+          variant="outlined"
           label="Creator"
           fullWidth
           value={postData.creator}
@@ -64,7 +63,7 @@ const Form = () => {
         />
         <TextField
           name="title"
-          square={false}
+          variant="outlined"
           label="Title"
           fullWidth
           value={postData.title}
@@ -72,7 +71,7 @@ const Form = () => {
         />
         <TextField
           name="message"
-          square={false}
+          variant="outlined"
           label="Post"
           fullWidth
           multiline
@@ -84,7 +83,7 @@ const Form = () => {
         />
         <TextField
           name="tags"
-          square={false}
+          variant="outlined"
           label="Tags"
           fullWidth
           value={postData.tags}
@@ -101,6 +100,7 @@ const Form = () => {
             }
           />
         </div>
+
         <Button
           className={classes.buttonSubmit}
           variant="contained"

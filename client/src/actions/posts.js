@@ -1,3 +1,4 @@
+
 import * as api from '../api';
 
 export const getPosts = () => async (dispatch) => {
@@ -11,12 +12,23 @@ export const getPosts = () => async (dispatch) => {
     
 export const createPost = (post) => async (dispatch) => {
     try {
+        console.log(post)
         const {data} = await api.createPost(post);
 
-        dispatch ({type: 'CREATE', paload: data})
+        return dispatch ({type: 'CREATE', paload: data})
     } catch (err) {
         console.log(err)
         
     }
 }
+
+// export const deletePost = (id) => async (dispatch) => {
+//     try {
+//       await api.deletePost(id);
+  
+//       dispatch({ type: DELETE, payload: id });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+// }
    

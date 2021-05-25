@@ -38,10 +38,23 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-      <Typography variant="h6">Ready to Jam</Typography>
+      <Typography 
+      variant="h4"
+      align="left"
+     
+      >Ready to Jam
+      </Typography>
+
+      <Typography 
+      variant="h6"
+      color="textSecondary"
+     
+      >Hello fellow musicians. Use this feature to create posts to organise a Jam, sell musical instruments or offer tutoring lessons. Enter location and key words in tag section to allow other users to find you easier.
+      </Typography>
+
         <TextField
           name="creator"
-          variant="outlined"
+          square={false}
           label="Creator"
           fullWidth
           value={postData.creator}
@@ -51,7 +64,7 @@ const Form = () => {
         />
         <TextField
           name="title"
-          variant="outlined"
+          square={false}
           label="Title"
           fullWidth
           value={postData.title}
@@ -59,7 +72,7 @@ const Form = () => {
         />
         <TextField
           name="message"
-          variant="outlined"
+          square={false}
           label="Post"
           fullWidth
           multiline
@@ -71,8 +84,8 @@ const Form = () => {
         />
         <TextField
           name="tags"
-          variant="outlined"
-          label="Tags (put in Instrument played and City to allow easier search for other users)"
+          square={false}
+          label="Tags"
           fullWidth
           value={postData.tags}
           onChange={(e) =>

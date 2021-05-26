@@ -4,13 +4,13 @@ import FileBase from "react-file-base64";
 import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 // import { createPost } from "../../api";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 // import InputGroup from "react-bootstrap/InputGroup";
 // import FormControl from "react-bootstrap/FormControl";
 // import Row from "react-bootstrap/Row";
 // import Col from "react-bootstrap/Col";
 
-const Form = () => {
+const Form = (currentId, setCurrentId) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -26,8 +26,14 @@ const Form = () => {
     e.preventDefault();
     console.log("handle")
 
+    if(currentId){
+      updatePost(currentId, postData)();
+    }else {
+      createPost(postData)();
+    }
+
     // dispatch
-    createPost(postData)();
+    
   };
 
   const clear = () => {};

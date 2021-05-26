@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-// import { createPost } from "../../api";
-import { createPost, updatePost } from "../../actions/posts";
-// import InputGroup from "react-bootstrap/InputGroup";
-// import FormControl from "react-bootstrap/FormControl";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
 
-const Form = (currentId, setCurrentId) => {
+import { createPost, updatePost } from "../../actions/posts";
+
+
+const Form = ({currentId, setCurrentId}) => {
+  
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -22,21 +21,29 @@ const Form = (currentId, setCurrentId) => {
     selectedFile: "",
   });
 
+  useEffect(() => {
+    if(post) setPostData(post);
+}, [post])
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handle")
 
     if(currentId){
-      updatePost(currentId, postData)();
+      dispatch(updatePost(currentId, postData))
     }else {
-      createPost(postData)();
+      dispatch (createPost(postData));
     }
 
-    // dispatch
+    clear();
     
   };
-
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({creator: '', title: '', message: '', tags: '', selectedFile: ''})
+}
 
   return (
     <Paper className={classes.paper}>

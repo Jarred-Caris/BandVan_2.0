@@ -13,6 +13,9 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 
+app.get('/', (req, res) => {
+    res.send(`This is Bandvan API`)
+})
 
 const PORT = process.env.PORT || 5000;
 

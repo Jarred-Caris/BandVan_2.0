@@ -3,13 +3,25 @@ import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import useStyles from "./styles";
 import logo from "../assets/logo.PNG";
+import {MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const Navbar = () => {
   const classes = useStyles();
   const user = null;
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#212121',
+      },
+      secondary: {
+        main: '#f44336',
+      },
+    },
+  });
   return (
     <div className={classes.brandContainer}>
-      <AppBar className={classes.appBar} position="static" color="secondary">
+      <MuiThemeProvider theme={theme}>
+      <AppBar className={classes.appBar} position="static" color="primary">
         <img className={classes.image} src={logo} alt="icon" height="150" />
         <Typography
           component={Link}
@@ -55,7 +67,7 @@ const Navbar = () => {
         )}
       </Toolbar>
       </AppBar>
-      
+      </MuiThemeProvider>
     </div>
   );
 };

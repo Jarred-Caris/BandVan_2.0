@@ -46,6 +46,7 @@ const Form = ({currentId, setCurrentId}) => {
 }
 
   return (
+    
     <Paper className={classes.paper}>
       <form
         autoComplete="off"
@@ -57,7 +58,7 @@ const Form = ({currentId, setCurrentId}) => {
           Ready to Jam
         </Typography>
 
-        <Typography variant="h6" color="textSecondary">
+        <Typography variant="body2" color="textprimary">
           Hello fellow musicians. Use this feature to create posts to organise a
           Jam, sell musical instruments or offer tutoring lessons. Enter
           location and key words in tag section to allow other users to find you
@@ -135,6 +136,7 @@ const Form = ({currentId, setCurrentId}) => {
         </Button>
       </form>
     </Paper>
+    
   );
 };
 

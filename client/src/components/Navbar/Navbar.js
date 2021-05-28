@@ -1,13 +1,21 @@
-import React from "react";
+import React , { useState, useEffect } from "react";
 import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useStyles from "./styles";
 import logo from "../assets/logo.PNG";
 import {MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { useDispatch} from 'react-redux'
+
 
 const Navbar = () => {
   const classes = useStyles();
-  const user = null;
+  const dispatch = useDispatch()
+  const history = useHistory();
+  const location = useLocation();
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  console.log(user)
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -18,6 +26,22 @@ const Navbar = () => {
       },
     },
   });
+
+  useEffect(() => {
+    const token = user?.token;
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+
+    history.push('/');
+
+    setUser(null);
+  };
+
+
   return (
     <div className={classes.brandContainer}>
       <MuiThemeProvider theme={theme}>
@@ -49,7 +73,7 @@ const Navbar = () => {
               variant="contained"
               className={classes.logout}
               color="secondary"
-              
+              onClick ={logout}
             >
               Logout
             </Button>

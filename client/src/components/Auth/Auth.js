@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from "./Input";
 import Icon from "./icon";
 import {useDispatch} from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const Auth = () => {
   const classes = useStyles();
@@ -20,6 +21,7 @@ const Auth = () => {
   const handleShowPassword = () => setShowPassword(!showPassword);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
   
   const handleSubmit = () => {};
   
@@ -37,7 +39,7 @@ const Auth = () => {
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
 
-      // history.push('/');
+      history.push('/');
     } catch (error) {
       console.log(error);
     }

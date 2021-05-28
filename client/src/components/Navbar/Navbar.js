@@ -22,15 +22,15 @@ const Navbar = () => {
     <div className={classes.brandContainer}>
       <MuiThemeProvider theme={theme}>
       <AppBar className={classes.appBar} position="static" color="primary">
-        <img className={classes.image} src={logo} alt="icon" height="150" />
+        <img className={classes.image}  src={logo} alt="icon" height="150" />
         <Typography
           component={Link}
           to="/"
           className={classes.heading}
-          variant="h2"
+          variant="h5"
           align="center"
         >
-          
+          Home
         </Typography>
         <Toolbar className={classes.toolbar}>
         {user ? (

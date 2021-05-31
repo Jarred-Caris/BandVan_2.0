@@ -20,6 +20,7 @@ const Form = ({currentId, setCurrentId}) => {
     tags: "",
     selectedFile: "",
   });
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if(post) setPostData(post);
@@ -30,7 +31,7 @@ const Form = ({currentId, setCurrentId}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handle")
-      dispatch (createPost(postData));
+    dispatch(createPost({ ...postData, name: user?.result?.name }));
     
 
     clear();
@@ -63,16 +64,6 @@ const Form = ({currentId, setCurrentId}) => {
           easier.
         </Typography>
 
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        />
         <TextField
           name="title"
           variant="outlined"

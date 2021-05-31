@@ -17,6 +17,7 @@ import useStyles from "./styles";
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <Card className={classes.card}>
@@ -26,7 +27,7 @@ const Post = ({ post, setCurrentId }) => {
         title={post.title}
       />
       <div className={classes.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>
+        <Typography variant="h6">{post.name}</Typography>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
         </Typography>
@@ -60,9 +61,11 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+      {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+        <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize="small" /> Delete
         </Button>
+        )}
       </CardActions>
     </Card>
   );

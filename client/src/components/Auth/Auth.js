@@ -12,14 +12,17 @@ import useStyles from "./styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from "./Input";
 import Icon from "./icon";
-import {useDispatch} from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { signin, signup } from '../../actions/auth';
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signin, signup } from "../../actions/auth";
 
-
-
-
-const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
@@ -28,42 +31,41 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [formData, setFormData] = useState(initialState)
-  
+  const [formData, setFormData] = useState(initialState);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    console.log(formData);
     if (isSignup) {
       dispatch(signup(formData, history));
-    }else {
+    } else {
       dispatch(signin(formData, history));
     }
   };
-  
+
   const handleChange = (e) => {
-    setFormData ({...formData, [e.target.name]: e.target.value });
-}
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
-    
+
   const googleSuccess = async (res) => {
-    console.log(res)
+    console.log(res);
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
-      dispatch({ type: 'AUTH', data: { result, token } });
+      dispatch({ type: "AUTH", data: { result, token } });
 
-      history.push('/');
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
-
   };
 
-  const googleError = () => alert('Google Sign In was unsuccessful. Try again');
+  const googleError = () => alert("Google Sign In was unsuccessful. Try again");
 
   return (
     <Container component="main" maxWidth="xs">
@@ -152,8 +154,6 @@ const Auth = () => {
             onFailure={googleError}
             cookiePolicy="single_host_origin"
           />
-        
-         
         </form>
       </Paper>
     </Container>

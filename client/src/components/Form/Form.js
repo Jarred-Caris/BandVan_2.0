@@ -30,12 +30,8 @@ const Form = ({currentId, setCurrentId}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handle")
-
-    if(currentId){
-      dispatch(updatePost(currentId, postData))
-    }else {
       dispatch (createPost(postData));
-    }
+    
 
     clear();
     
